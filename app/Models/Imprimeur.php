@@ -13,14 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $adresse
  * @property string $password
  * @property string $email_verified_at
- * @property string $remember_token
  * @property string $created_at
  * @property string $updated_at
  * @property Appartenir[] $appartenirs
- * @property Avi[] $avis
- * @property Commande[] $commandes
  */
-class User extends Model
+class Imprimeur extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
@@ -32,7 +29,7 @@ class User extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nom', 'prenom', 'email', 'telephone', 'adresse', 'password', 'email_verified_at', 'remember_token', 'created_at', 'updated_at'];
+    protected $fillable = ['nom', 'prenom', 'email', 'telephone', 'adresse', 'password', 'email_verified_at', 'created_at', 'updated_at'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -47,21 +44,5 @@ class User extends Model
     public function appartenirs()
     {
         return $this->hasMany('App\Models\Appartenir');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function avis()
-    {
-        return $this->hasMany('App\Models\Avi');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function commandes()
-    {
-        return $this->hasMany('App\Models\Commande');
     }
 }

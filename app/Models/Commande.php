@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -44,11 +44,18 @@ class Commande extends Model
     protected $fillable = ['centre_impression_id', 'user_id', 'nom', 'prenom', 'email', 'adresse', 'date_commande', 'delais', 'format', 'type_impression', 'type_livraison', 'commentaire', 'reference', 'prix_livraison', 'montant', 'montant_total', 'support_impression', 'created_at', 'updated_at'];
 
     /**
+     * Indicates if the model should be timestamped.
+     * 
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function centreImpression()
     {
-        return $this->belongsTo('App\CentreImpression');
+        return $this->belongsTo('App\Models\CentreImpression');
     }
 
     /**
@@ -56,7 +63,7 @@ class Commande extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**
@@ -64,6 +71,6 @@ class Commande extends Model
      */
     public function factures()
     {
-        return $this->hasMany('App\Facture');
+        return $this->hasMany('App\Models\Facture');
     }
 }

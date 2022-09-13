@@ -21,8 +21,6 @@ class CreateCentreImpressionsTable extends Migration
             $table->double('longitude');
             $table->double('lagitude');
             $table->string('ifu');
-            $table->foreignId("galerie_id")
-            ->constrained()->onDelete("restrict");
             $table->timestamps();
         });
     }
