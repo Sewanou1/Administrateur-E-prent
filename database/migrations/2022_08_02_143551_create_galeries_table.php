@@ -16,8 +16,6 @@ class CreateGaleriesTable extends Migration
         Schema::create('galeries', function (Blueprint $table) {
             $table->id();
             $table->string('photo');
-            $table->foreignId("imprimeur_id")
-            ->constrained()->onDelete("restrict");
             $table->timestamps();
         });
     }

@@ -15,13 +15,14 @@ class CreateImprimeursTable extends Migration
     {
         Schema::create('imprimeurs', function (Blueprint $table) {
             $table->id();
-            $table->string('raison_sociale');
+            $table->string('nom');
+            $table->string('prenom');
             $table->string('email')->unique();
             $table->integer('telephone')->unique();
             $table->string('adresse');
             $table->string('password');
-            $table->foreignId("administrateur_id")
-            ->constrained()->onDelete("restrict");
+             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamps();
         });
     }
 

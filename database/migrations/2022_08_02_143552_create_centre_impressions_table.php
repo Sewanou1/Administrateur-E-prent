@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAvisTable extends Migration
+class CreateCentreImpressionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateAvisTable extends Migration
      */
     public function up()
     {
-        Schema::create('avis', function (Blueprint $table) {
+        Schema::create('centre_impressions', function (Blueprint $table) {
             $table->id();
-            $table->longText('commentaire');
-            $table->foreignId("user_id")
+            $table->string('nom');
+            $table->integer('telephone');
+            $table->string('adresse');
+            $table->double('longitude');
+            $table->double('lagitude');
+            $table->string('ifu');
+            $table->foreignId("galerie_id")
             ->constrained()->onDelete("restrict");
             $table->timestamps();
         });
@@ -29,6 +34,6 @@ class CreateAvisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avis');
+        Schema::dropIfExists('centre_impressions');
     }
 }

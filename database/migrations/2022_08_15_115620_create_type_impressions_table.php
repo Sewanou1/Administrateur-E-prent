@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaniersTable extends Migration
+class CreateTypeImpressionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreatePaniersTable extends Migration
      */
     public function up()
     {
-        Schema::create('paniers', function (Blueprint $table) {
+        Schema::create('type_impressions', function (Blueprint $table) {
             $table->id();
-            $table->string('prix');
-            $table->string('statut');
-            $table->foreignId("articles_id")
-            ->constrained()->onDelete("restrict");
-            $table->foreignId("user_id")
+            $table->string('libelle')->unique();
+            $table->foreignId("centre_impression_id")
             ->constrained()->onDelete("restrict");
             $table->timestamps();
         });
@@ -32,6 +29,6 @@ class CreatePaniersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paniers');
+        Schema::dropIfExists('type_impressions');
     }
 }

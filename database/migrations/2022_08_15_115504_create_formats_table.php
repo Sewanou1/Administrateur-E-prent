@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFacturesTable extends Migration
+class CreateFormatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateFacturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('facturess', function (Blueprint $table) {
+        Schema::create('formats', function (Blueprint $table) {
             $table->id();
-            $table->string('prix');
-            $table->longText('detail');
-            $table->string('statut');
-            $table->foreignId("panier_id")
-            ->constrained()->onDelete("restrict");
-            $table->foreignId("user_id")
+            $table->string('libelle')->unique();
+            $table->foreignId("centre_impression_id")
             ->constrained()->onDelete("restrict");
             $table->timestamps();
         });
@@ -33,6 +29,6 @@ class CreateFacturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facturess');
+        Schema::dropIfExists('formats');
     }
 }
