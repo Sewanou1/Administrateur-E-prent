@@ -17,4 +17,5 @@ Route::post('/inscription', [UserController::class,'register']);
 Route::post('/connexion', [UserController::class,'login']);
 Route::post('/commander',[CommandeController::class,'registerCommande']);
 Route::post('/uploadFile',[DocumentController::class,'upload']);
-Route::post('/order',[OrderController::class,'Order']);
+Route::post('/GetDevis',[OrderController::class,'GetDevis']);
+Route::post('/commander',[CommandeController::class,'registerCommande']);

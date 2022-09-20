@@ -21,19 +21,16 @@ class CreateCommandesTable extends Migration
             $table->string('adresse');
             $table->date('date_commande');
             $table->string('delais');
-            $table->string('format');
-            $table->string('type_impression');
             $table->string('type_livraison');
-            $table->longText('commentaire');
             $table->string('reference')->unique();
-            $table->double('prix_livraison');
             $table->double('montant');
+            $table->double('prix_livraison');
+            $table->integer('nombre_article');
             $table->double('montant_total');
-            $table->string('support_impression');
             $table->foreignId("centre_impression_id")
             ->constrained()->onDelete("restrict");
             $table->foreignId("user_id")
-            ->constrained()->onDelete("restrict");
+            ->constrained()->onDelete("restrict")->nullable();
             $table->timestamps();
         });
     }

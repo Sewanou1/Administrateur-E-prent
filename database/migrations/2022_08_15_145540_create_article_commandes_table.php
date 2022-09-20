@@ -18,11 +18,12 @@ class CreateArticleCommandesTable extends Migration
             $table->integer('quantite');
             $table->double('prix');
             $table->double('montant');
-            $table->string('type_impression');
-            $table->string('format');
-            $table->string('info_specifique');
-            $table->string('support_impression');
-            $table->foreignId("article_commande_id")
+            $table->string('type_impression')->nullable();
+            $table->string('format')->nullable();
+            $table->string('document');
+            $table->string('info_specifique')->nullable();
+            $table->string('support_impression')->nullable();
+            $table->foreignId("commande_id")
             ->constrained()->onDelete("restrict");
             $table->timestamps();
         });
