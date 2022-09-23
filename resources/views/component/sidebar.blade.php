@@ -35,10 +35,19 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="{{ route('accueil') }}" class="nav-link @if (request()->is('/')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('typeImpression.index') }}"
+                class="nav-link @if (request()->is('typeImpression*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Type Impression
               </p>
             </a>
           </li>

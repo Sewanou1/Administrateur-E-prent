@@ -11,15 +11,16 @@ class OrderController extends Controller
     //
     public function GetDevis(Request $request){
         $sommes=0;
-        $articles= Article::with('typeImpression')->get();
-        // $articles= Article::where('libelle',$request["type_impression"])->first();
-        foreach($articles as $article){
-         if($request["t"]==$article->typeImpression->libelle){
-            $PrixCom= $article->prix;
-            $Q=$request["q"];
-            $sommes+= $Q*$PrixCom;
+        $les_articles= Article::all();
+        foreach($les_articles as $un_article){
+            foreach($request->all() as $n_cart){
+                if($n_cart['typeImpression']==$un_article->typeImpression->libelle && $n_cart['format']==$un_article->format->libelle){
+                    $PrixCom= $un_article->prix;
+                    $Q=$n_cart["quantite"];
+                    $sommes+= $Q*$PrixCom;
+                }
             }
-         }
+        }
         return response()->json(['devis'=>$sommes]);
     }
 }

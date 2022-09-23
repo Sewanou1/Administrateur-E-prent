@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
- * @property integer $article_commande_id
+ * @property integer $commande_id
  * @property int $quantite
  * @property float $prix
  * @property float $montant
  * @property string $type_impression
  * @property string $format
+ * @property string $document_imprimer
  * @property string $info_specifique
  * @property string $support_impression
  * @property string $created_at
@@ -22,7 +23,7 @@ class ArticleCommande extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -30,11 +31,11 @@ class ArticleCommande extends Model
     /**
      * @var array
      */
-    protected $fillable = ['article_commande_id', 'quantite', 'prix', 'montant', 'type_impression', 'format', 'info_specifique', 'support_impression', 'created_at', 'updated_at'];
+    protected $fillable = ['commande_id', 'quantite', 'prix', 'montant', 'type_impression', 'format','document_imprimer', 'info_specifique', 'support_impression', 'created_at', 'updated_at'];
 
     /**
      * Indicates if the model should be timestamped.
-     * 
+     *
      * @var bool
      */
     public $timestamps = false;

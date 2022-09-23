@@ -26,9 +26,11 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
-     @yield('link-css')
+
+    @yield('link-css')
 
     <!-- Font Awesome JS -->
+    
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
     integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous">
     </script>
@@ -40,6 +42,8 @@
 <div class="wrapper">
     @include('component.navbar')
     @include('component.sidebar')
+
+
     <div class="content-wrapper">
         <div class="pt-2">
             @include('component.alert')
@@ -101,6 +105,51 @@ aria-hidden="true">
     <script src="{{ asset('assets/dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
+
+    @yield('scriptJs')
+    <script>
+        $(document).on('click', '#delButton', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#smallModal').modal("show");
+                    $('#smallBody').html(result).show();
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 8000
+            })
+        })
+        $(function() {
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            $('#summernote').summernote({
+                height: 200,
+            })
+            $('#inputGroupFile01').on('change', function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        });
+    </script>
 </body>
 
 </html>
