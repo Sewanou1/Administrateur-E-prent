@@ -5,6 +5,8 @@ namespace App\Http\Controllers\font;
 use App\Http\Controllers\Controller;
 use App\Models\ArticleCommande;
 use App\Models\Commande;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -16,11 +18,15 @@ class CommandeController extends Controller
 
         if($request->hasFile('file')){
             $file= $request->file('file');
-            $fileName = $file->getClientOriginalName();
+            $fileName = Str::random(32).".".$file->getClientOriginalExtension();
             // $path="storage/".$fileName;
-            // $file->move($path,file_get_contents($file));
-            $file->storeAs('Files',$fileName);
-            return response()->json("Upload successfully.");
+            // $file->move('files/', $fileName);
+            // $file->path();
+            $path = $file->storeAs('Files',$fileName);
+            return response()->json([
+                "message" => "Upload successfully.",
+                "path"=> $path
+            ]);
 
         }
             return response()->json("File not found");
@@ -29,31 +35,35 @@ class CommandeController extends Controller
     //
     public function registerCommande(Request $request){
         $commande= new Commande ;
-        $commande->nom= "ESSESSINOU";
-        $commande->prenom= "Damien";
-        $commande->email= "daes@gmail.com";
-        $commande->adresse= "Tankpè parana";
-        $commande->date_commande= "2022-09-21";
-        $commande->delais= "2022-09-25";
-        $commande->type_livraison= "Livraison";
-        $commande->reference= "HJD2S4";
-        $commande->montant= "85";
-        $commande->prix_livraison= "10";
-        $commande->nombre_article= "1";
-        $commande->montant_total= "95";
-        $commande->centre_impression_id= "2";
+        $commande->nom= $request->nom;
+        $commande->prenom= $request->prenom;
+        $commande->email= $request->email;
+        $commande->adresse= $request->adresse;
+        $commande->date_commande= Carbon::now();
+        $commande->delais= $request->delais;
+        $commande->type_livraison= $request->type_livraison;
+        $commande->reference= str_pad(random_int(1,9999), 6, '0', STR_PAD_LEFT);
+        $commande->montant= $request->montant;
+        $commande->prix_livraison= 500;
+        $commande->nombre_article= $request->nombre_article;
+        $commande->montant_total= $request->montant + 500;
+        $commande->centre_impression_id= 2;
         $commande->save();
-        $idCommande= Commande::all()->last()->id;
-        $request['commande_id']=$idCommande;
-        // return $request->all();
-       $articleCommande= ArticleCommande::create($request->all());
-       if(!$articleCommande){
-        return "pas d'insertion" ;
-        // back()->with('error',"Une erreur s'est produite")
-       }else{
-        return "insertion ok";
-        // back()->with('success',"article sauvegardée avec succès")
-       }
+    //     $idCommande= $commande->id;
+    //     $request['commande_id']=$idCommande;
+    //     // return $request->all();
+    //    $articleCommande= new ArticleCommande();
+        $articles_commande = $request->articles_commande;
+        foreach ($articles_commande as $item) {
+            $commande->articles_commande()->create($item);
+        }
+    //    if(!$articleCommande){
+    //     return "pas d'insertion" ;
+    //     // back()->with('error',"Une erreur s'est produite")
+    //    }else{
+    //     return "insertion ok";
+    //     // back()->with('success',"article sauvegardée avec succès")
+    //    }
 
     }
 }

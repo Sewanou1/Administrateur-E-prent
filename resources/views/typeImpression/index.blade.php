@@ -27,6 +27,7 @@
                 <thead>
                     <tr>
                         <th>Libellé</th>
+                        {{-- <th>Centre d'impression</th> --}}
                         <th style="text-align: center">Actions</th>
                     </tr>
                 </thead>
@@ -34,6 +35,7 @@
                     @foreach ($typeImpressions as $typeImpression)
                         <tr>
                             <td>{{ $typeImpression->libelle}} </td>
+                            {{-- <td>{{ $typeImpression->centreImpression->nom}} </td> --}}
                              <td class="project-actions  text-center">
                                 <a class="btn btn-info btn-sm" href="{{ route('typeImpression.edit', ['typeImpression' => $typeImpression->id]) }}">
                                     <i class="fas fa-pencil-alt">

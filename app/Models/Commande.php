@@ -33,7 +33,7 @@ class Commande extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -45,7 +45,7 @@ class Commande extends Model
 
     /**
      * Indicates if the model should be timestamped.
-     * 
+     *
      * @var bool
      */
     public $timestamps = false;
@@ -72,5 +72,9 @@ class Commande extends Model
     public function factures()
     {
         return $this->hasMany('App\Models\Facture');
+    }
+
+    public function articles_commande () {
+        return $this->hasMany(ArticleCommande::class, 'commande_id');
     }
 }
