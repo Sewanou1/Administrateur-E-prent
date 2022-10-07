@@ -43,8 +43,8 @@ class ArticleCommande extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function articleCommande()
+    public function Commande()
     {
-        return $this->belongsTo('App\Models\ArticleCommande');
+        return $this->belongsTo('App\Models\Commande');
     }
 }

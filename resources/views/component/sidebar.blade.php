@@ -47,7 +47,79 @@
                 class="nav-link @if (request()->is('typeImpression*')) active @endif">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Type Impression
+                Types Impression
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('format.index') }}"
+                class="nav-link @if (request()->is('format*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Formats Impression
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('article.index') }}"
+                class="nav-link @if (request()->is('article*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Articles
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('clients.index') }}"
+                class="nav-link @if (request()->is('client*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Clients
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('avis.index') }}"
+                class="nav-link @if (request()->is('avis*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Avis
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('commandes.index') }}"
+                class="nav-link @if (request()->is('commande*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Commandes
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('detailCommande.index') }}"
+                class="nav-link @if (request()->is('detailCommande*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Article_Commandes
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('facture.index') }}"
+                class="nav-link @if (request()->is('facture*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Factures
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('centreImpression.index') }}"
+                class="nav-link @if (request()->is('centreImpression*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Centres Impressions
               </p>
             </a>
           </li>
