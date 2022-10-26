@@ -13,11 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type_impression
  * @property string $format
  * @property string $document_imprimer
- * @property string $info_specifique
+ * @property string $commentaire
  * @property string $support_impression
  * @property string $created_at
  * @property string $updated_at
- * @property ArticleCommande $articleCommande
+ * @property Commande $commande
  */
 class ArticleCommande extends Model
 {
@@ -31,7 +31,7 @@ class ArticleCommande extends Model
     /**
      * @var array
      */
-    protected $fillable = ['commande_id', 'quantite', 'prix', 'montant', 'type_impression', 'format','document_imprimer', 'info_specifique', 'support_impression', 'created_at', 'updated_at'];
+    protected $fillable = ['commande_id', 'quantite', 'prix', 'montant', 'type_impression', 'format', 'document_imprimer', 'commentaire', 'support_impression', 'created_at', 'updated_at'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -43,7 +43,7 @@ class ArticleCommande extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function Commande()
+    public function commande()
     {
         return $this->belongsTo('App\Models\Commande');
     }

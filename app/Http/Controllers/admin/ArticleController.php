@@ -5,11 +5,26 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Format;
+use App\Models\SupportImpression;
 use App\Models\TypeImpression;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+
+    public function getFileExt($file)
+    {
+        return collect(explode(".", $file->getClientOriginalName()))->last();
+    }
+    public function notImage($file)
+    {
+        return ($this->getFileExt($file) != 'png' && $this->getFileExt($file) != 'jpg' && $this->getFileExt($file) != 'jpeg' && $this->getFileExt($file) != 'webp');
+    }
+    public function imageName($file, $id)
+    {
+        return "articlePic-" .
+            $id . "." . $this->getFileExt($file);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +49,8 @@ class ArticleController extends Controller
         $title="Creation d'un nouvel article";
         $typeImpressions= TypeImpression::all();
         $formats= Format::all();
-        return view('article.create',compact('title','typeImpressions','formats'));
+        $supporImpressions= SupportImpression::all();
+        return view('article.create',compact('title','typeImpressions','formats','supporImpressions'));
     }
 
     /**

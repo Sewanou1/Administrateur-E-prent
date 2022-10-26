@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
+ * @property integer $centre_impression_id
  * @property string $libelle
  * @property string $created_at
  * @property string $updated_at
- * @property Appartenir[] $appartenirs
+ * @property CentreImpression $centreImpression
  */
-class Role extends Model
+class SupportImpression extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
@@ -23,7 +24,7 @@ class Role extends Model
     /**
      * @var array
      */
-    protected $fillable = ['libelle', 'created_at', 'updated_at'];
+    protected $fillable = ['centre_impression_id', 'libelle', 'created_at', 'updated_at'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -33,10 +34,10 @@ class Role extends Model
     public $timestamps = false;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function appartenirs()
+    public function centreImpression()
     {
-        return $this->hasMany('App\Models\Appartenir');
+        return $this->belongsTo('App\Models\CentreImpression');
     }
 }

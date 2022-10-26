@@ -14,19 +14,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $adresse
  * @property string $date_commande
  * @property string $delais
- * @property string $format
- * @property string $type_impression
  * @property string $type_livraison
- * @property string $commentaire
  * @property string $reference
- * @property float $prix_livraison
  * @property float $montant
+ * @property float $prix_livraison
+ * @property int $nombre_article
  * @property float $montant_total
- * @property string $support_impression
+ * @property boolean $statut
+ * @property boolean $etat
  * @property string $created_at
  * @property string $updated_at
  * @property CentreImpression $centreImpression
  * @property User $user
+ * @property ArticleCommande[] $articleCommandes
  * @property Facture[] $factures
  */
 class Commande extends Model
@@ -41,7 +41,7 @@ class Commande extends Model
     /**
      * @var array
      */
-    protected $fillable = ['centre_impression_id', 'user_id', 'nom', 'prenom', 'email', 'adresse', 'date_commande', 'delais', 'format', 'type_impression', 'type_livraison', 'commentaire', 'reference', 'prix_livraison', 'montant', 'montant_total', 'support_impression', 'created_at', 'updated_at'];
+    protected $fillable = ['centre_impression_id', 'user_id', 'nom', 'prenom', 'email', 'adresse', 'date_commande', 'delais', 'type_livraison', 'reference', 'montant', 'prix_livraison', 'nombre_article', 'montant_total', 'statut', 'etat', 'created_at', 'updated_at'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -64,6 +64,14 @@ class Commande extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articleCommandes()
+    {
+        return $this->hasMany('App\Models\ArticleCommande');
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppartenirsTable extends Migration
+class CreateSupportImpressionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateAppartenirsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appartenirs', function (Blueprint $table) {
+        Schema::create('support_impressions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("role_id")
-            ->constrained()->onDelete("restrict");
-            $table->foreignId("user_id")
-            ->constrained()->onDelete("restrict");
-            $table->foreignId("imprimeur_id")
+            $table->string('libelle')->unique();
+            $table->foreignId("centre_impression_id")
             ->constrained()->onDelete("restrict");
             $table->timestamps();
         });
@@ -32,6 +29,6 @@ class CreateAppartenirsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appartenirs');
+        Schema::dropIfExists('support_impressions');
     }
 }

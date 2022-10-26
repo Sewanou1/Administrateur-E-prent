@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SupportImpression;
 use Illuminate\Http\Request;
+
+use function PHPUnit\Framework\returnSelf;
 
 class SupportImpressionController extends Controller
 {
@@ -15,7 +18,9 @@ class SupportImpressionController extends Controller
     public function index()
     {
         //
-        $title="Liste des support d'impression";
+        $title="Liste des supports   d'impression";
+        $supports=SupportImpression::all();
+        return view('supportImpression.index',compact('title','supports'));
     }
 
     /**
@@ -26,6 +31,8 @@ class SupportImpressionController extends Controller
     public function create()
     {
         //
+        $title="Nouveau support d'impression";
+        return view('supportImpression.create',compact('title'));
     }
 
     /**
@@ -37,6 +44,8 @@ class SupportImpressionController extends Controller
     public function store(Request $request)
     {
         //
+        SupportImpression::create($request->all());
+        return redirect()->route('supports.index')->with('success','Crée avec succès !!!');
     }
 
     /**

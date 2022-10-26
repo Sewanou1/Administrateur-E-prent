@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 
 class CentreImpressionController extends Controller
 {
+    public function getFileExt($file)
+    {
+        return collect(explode(".", $file->getClientOriginalName()))->last();
+    }
+    public function notImage($file)
+    {
+        return ($this->getFileExt($file) != 'png' && $this->getFileExt($file) != 'jpg' && $this->getFileExt($file) != 'jpeg' && $this->getFileExt($file) != 'webp');
+    }
+    public function imageName($file, $id)
+    {
+        return "centreImpressionPic-" .
+            $id . "." . $this->getFileExt($file);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,6 +55,19 @@ class CentreImpressionController extends Controller
     public function store(Request $request)
     {
         //
+        $centreImpression = CentreImpression::create($request->all());
+        if ($request->file("photo")) {
+            $file = $request->file('photo');
+
+            if ($this->notImage($file))
+                return back()->with('error', 'Sélectionnez une image');
+
+
+            $filename = $this->imageName($file, $centreImpression->id);
+            $file->move(public_path(StorageController::$PATH_IMAGES . '$centreImpression'), $filename);
+            $centreImpression->update(["photo" => $filename]);
+        }
+        return redirect()->route('centreImpression.index')->with('success', "Crée avec succès");
     }
 
     /**
@@ -87,5 +113,7 @@ class CentreImpressionController extends Controller
     public function destroy($id)
     {
         //
+        CentreImpression::destroy($id);
+        return redirect()->route('centreImpression.index')->with('info', "Supprimé avec succès");
     }
 }

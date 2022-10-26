@@ -1611,3 +1611,8 @@ Route::resource('/typeImpression', [TypeImpression::class]);
     </script>
 @endsection
 
+public function articles_commande () {
+    return $this->hasMany(ArticleCommande::class, 'commande_id');
+}
+
+php artisan krlove:generate:all-models

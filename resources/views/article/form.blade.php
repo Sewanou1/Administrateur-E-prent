@@ -45,14 +45,12 @@
 
     <div class="form-group col-4">
         <label for="intitule">Support de l'impression</label>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-            <input required type="text" name="intitule" class="form-control" id=""
-                placeholder="Ex : article ...."
-                @if (isset($article)) value = "{{ $article->support_impression }}" @endif>
-        </div>
+        <select class="form-control select1" name="supporImpression_id" style="width: 100%;">
+            @foreach ($supporImpressions as $supporImpression)
+                <option value="{{ $supporImpression->id }}">{{ $supporImpression->libelle }}
+                </option>
+            @endforeach
+        </select>
     </div>
 
     <div class="form-group col-4">

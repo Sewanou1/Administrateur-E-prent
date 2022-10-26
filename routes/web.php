@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\CommandeController;
 use App\Http\Controllers\admin\FactureController;
 use App\Http\Controllers\admin\FormatController;
+use App\Http\Controllers\admin\SupportImpressionController;
 use App\Http\Controllers\admin\TypeImpression;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::get('/logout', function(){
 Route::get('/', function () {
     return view('dashbord.index');
 })->name('accueil');
+Route::get('/admin', [DashboardController::class,'index'])->middleware(['auth'])->name('admin.index');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -33,4 +35,5 @@ Route::resource('/commandes',CommandeController::class);
 Route::resource('/detailCommande',ArticleCommandeController::class);
 Route::resource('/facture',FactureController::class);
 Route::resource('/centreImpression',CentreImpressionController::class);
+Route::resource('/supports',SupportImpressionController::class);
 

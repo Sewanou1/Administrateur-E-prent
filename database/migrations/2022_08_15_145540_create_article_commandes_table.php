@@ -16,12 +16,12 @@ class CreateArticleCommandesTable extends Migration
         Schema::create('article_commandes', function (Blueprint $table) {
             $table->id();
             $table->integer('quantite');
-            $table->double('prix');
-            $table->double('montant');
+            $table->double('prix')->nullable();
+            $table->double('montant')->nullable();
             $table->string('type_impression')->nullable();
             $table->string('format')->nullable();
             $table->string('document');
-            $table->string('info_specifique')->nullable();
+            $table->string('commentaire')->nullable();
             $table->string('support_impression')->nullable();
             $table->foreignId("commande_id")
             ->constrained()->onDelete("restrict");

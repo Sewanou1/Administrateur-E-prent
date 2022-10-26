@@ -19,10 +19,10 @@
 
                         <form id="quickForm" method="post" action="{{ route('format.store') }}">
                             <div class="card-body">
-                                @include('format.form')
+                                @include('supportImpression.form')
                             </div>
                             <div class="card-footer">
-                                <a href="{{ route('format.index') }}">
+                                <a href="{{ route('supports.index') }}">
                                     <button type="button" class="btn btn-danger">
                                         Annuler
                                     </button></a>

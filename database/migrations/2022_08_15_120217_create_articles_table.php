@@ -18,7 +18,8 @@ class CreateArticlesTable extends Migration
             $table->string('libelle');
             $table->double('prix');
             $table->string('photo');
-            $table->string('support_impression');
+            $table->foreignId("support_impression_id")
+            ->constrained()->onDelete("restrict");
             $table->foreignId("type_impression_id")
             ->constrained()->onDelete("restrict");
             $table->foreignId("format_id")

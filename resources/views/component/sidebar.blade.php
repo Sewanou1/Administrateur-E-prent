@@ -47,7 +47,7 @@
                 class="nav-link @if (request()->is('typeImpression*')) active @endif">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Types Impression
+                Types Impressions
               </p>
             </a>
           </li>
@@ -56,7 +56,16 @@
                 class="nav-link @if (request()->is('format*')) active @endif">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Formats Impression
+                Formats Impressions
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('supports.index') }}"
+                class="nav-link @if (request()->is('supports*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Supports Impressions
               </p>
             </a>
           </li>

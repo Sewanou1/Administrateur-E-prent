@@ -12,17 +12,24 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $longitude
  * @property float $lagitude
  * @property string $ifu
+ * @property string $photo
+ * @property string $facebook
+ * @property string $instagram
+ * @property string $linkedIn
+ * @property string $twitter
+ * @property string $delais
  * @property string $created_at
  * @property string $updated_at
  * @property Commande[] $commandes
  * @property Format[] $formats
+ * @property SupportImpression[] $supportImpressions
  * @property TypeImpression[] $typeImpressions
  */
 class CentreImpression extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -30,11 +37,11 @@ class CentreImpression extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nom', 'telephone', 'adresse', 'longitude', 'lagitude', 'ifu', 'created_at', 'updated_at'];
+    protected $fillable = ['nom', 'telephone', 'adresse', 'longitude', 'lagitude', 'ifu', 'photo', 'facebook', 'instagram', 'linkedIn', 'twitter','delais', 'created_at', 'updated_at'];
 
     /**
      * Indicates if the model should be timestamped.
-     * 
+     *
      * @var bool
      */
     public $timestamps = false;
@@ -53,6 +60,14 @@ class CentreImpression extends Model
     public function formats()
     {
         return $this->hasMany('App\Models\Format');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function supportImpressions()
+    {
+        return $this->hasMany('App\Models\SupportImpression');
     }
 
     /**

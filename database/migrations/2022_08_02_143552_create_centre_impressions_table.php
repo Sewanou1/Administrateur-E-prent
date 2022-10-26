@@ -21,11 +21,12 @@ class CreateCentreImpressionsTable extends Migration
             $table->double('longitude');
             $table->double('lagitude');
             $table->string('ifu');
-            $table->string('photo')->nullable();
+            $table->string('photo');
             $table->string("facebook")->nullable();
             $table->string("instagram")->nullable();
             $table->string("linkedIn")->nullable();
             $table->string("twitter")->nullable();
+            $table->longText("delais")->nullable();
             $table->timestamps();
         });
     }

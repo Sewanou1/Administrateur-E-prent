@@ -15,7 +15,7 @@
     <div class="card">
          <div class="card-header d-flex  justify-content-between">
             <h3 class="card-title mr-auto p-2">{{ $title }} </h3>
-            <a class="btn btn-primary p-2" href="{{ route('format.create') }} ">
+            <a class="btn btn-primary p-2" href="{{ route('supports.create') }} ">
                 <i class="fas fa-plus">
                 </i>
                 Ajouter
@@ -32,17 +32,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($formats as $format)
+                    @foreach ($supports as $support)
                         <tr>
-                            <td>{{ $format->libelle}} </td>
-                            {{-- <td>{{ $format->centreImpression->nom}} </td> --}}
+                            <td>{{ $support->libelle}} </td>
+                            {{-- <td>{{ $support->centreImpression->nom}} </td> --}}
                              <td class="project-actions  text-center">
-                                <a class="btn btn-info btn-sm" href="{{ route('format.edit', ['format' => $format->id]) }}">
+                                <a class="btn btn-info btn-sm" href="{{ route('supports.edit', ['support' => $support->id]) }}">
                                     <i class="fas fa-pencil-alt">
                                     </i>
                                     Modifier
                                 </a>
-                                <form method="POST" action="{{ route('format.destroy', ['format' => $format->id]) }}"
+                                <form method="POST" action="{{ route('supports.destroy', ['support' => $support->id]) }}"
                                     class="delete" style="display: inline-block;" accept-charset="UTF-8">
                                     @csrf
                                     @method('DELETE')

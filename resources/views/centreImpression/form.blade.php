@@ -16,7 +16,7 @@
         <label for="telephone">Téléphone</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                <span class="input-group-text"><i class="fas fa-phone"></i></span>
             </div>
             <input required type="text" name="telephone" class="form-control" id=""
                 placeholder="Ex : +229 00000000"
@@ -91,7 +91,7 @@
         <label for="intitule">Facebook</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                <span class="input-group-text"><i class="fas fa-facebook"></i></span>
             </div>
             <input required type="text" name="facebook" class="form-control" id=""
                 placeholder="Ex : Maître conférence"
@@ -103,7 +103,7 @@
         <label for="instagram">Instagram</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                <span class="input-group-text"><i class="fas fa-instagram"></i></span>
             </div>
             <input required type="text" name="instagram" class="form-control" id=""
                 placeholder="Ex : Maître conférence"
@@ -115,7 +115,7 @@
         <label for="twiter">Twiter</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                <span class="input-group-text"><i class="fas fa-twiter"></i></span>
             </div>
             <input required type="text" name="twiter" class="form-control" id=""
                 placeholder="Ex : Maître conférence"

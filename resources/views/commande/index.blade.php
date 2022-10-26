@@ -28,6 +28,8 @@
                         <th>Nombre d'article</th>
                         <th class="text-center">Prix de la commande</th>
                         <th style="text-align: center">Commandée par:</th>
+                        <th style="text-align: center">Statut</th>
+                        <th style="text-align: center">Etat</th>
                         <th style="text-align: center">Actions</th>
                     </tr>
                 </thead>
@@ -41,6 +43,8 @@
                             <td>{{ $commande->nombre_article}}</td>
                             <td>{{ $commande->montant_total}}</td>
                             <td>{{ $commande->nom}} {{ $commande->prenom}}</td>
+                            <td>{{ $commande->statut}} </td>
+                            <td>{{ $commande->etat}}</td>
                             <td class="project-actions text-center">
                                 <form method="POST"
                                     action="{{ route('commandes.destroy', ['commande' => $commande->id]) }}"

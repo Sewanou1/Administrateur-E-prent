@@ -27,6 +27,8 @@ class CreateCommandesTable extends Migration
             $table->double('prix_livraison');
             $table->integer('nombre_article');
             $table->double('montant_total');
+            $table->boolean("statut")->default(0);
+            $table->boolean("etat")->default(0);
             $table->foreignId("centre_impression_id")
             ->constrained()->onDelete("restrict");
             $table->foreignId("user_id")

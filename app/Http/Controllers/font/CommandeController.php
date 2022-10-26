@@ -44,26 +44,20 @@ class CommandeController extends Controller
         $commande->type_livraison= $request->type_livraison;
         $commande->reference= str_pad(random_int(1,9999), 6, '0', STR_PAD_LEFT);
         $commande->montant= $request->montant;
-        $commande->prix_livraison= 500;
+        if($request->type_livraison=="A livrer à la maison"){
+            $commande->prix_livraison= 500;
+        } else {
+            $commande->prix_livraison= 0;
+        }
         $commande->nombre_article= $request->nombre_article;
-        $commande->montant_total= $request->montant + 500;
-        $commande->centre_impression_id= 2;
+        $commande->montant_total= $request->montant + $commande->prix_livraison;
+        $commande->centre_impression_id= 1;
         $commande->save();
-    //     $idCommande= $commande->id;
-    //     $request['commande_id']=$idCommande;
-    //     // return $request->all();
-    //    $articleCommande= new ArticleCommande();
         $articles_commande = $request->articles_commande;
         foreach ($articles_commande as $item) {
             $commande->articles_commande()->create($item);
         }
-    //    if(!$articleCommande){
-    //     return "pas d'insertion" ;
-    //     // back()->with('error',"Une erreur s'est produite")
-    //    }else{
-    //     return "insertion ok";
-    //     // back()->with('success',"article sauvegardée avec succès")
-    //    }
 
+        return response()->json(['order'=>$commande]);
     }
 }

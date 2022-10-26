@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property integer $id
@@ -16,15 +18,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $remember_token
  * @property string $created_at
  * @property string $updated_at
- * @property Appartenir[] $appartenirs
  * @property Avi[] $avis
  * @property Commande[] $commandes
  */
 class User extends Model
 {
+    use HasApiTokens;
+
+    use HasRoles;
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -36,7 +40,7 @@ class User extends Model
 
     /**
      * Indicates if the model should be timestamped.
-     * 
+     *
      * @var bool
      */
     public $timestamps = false;
@@ -44,10 +48,10 @@ class User extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function appartenirs()
-    {
-        return $this->hasMany('App\Models\Appartenir');
-    }
+    // public function appartenirs()
+    // {
+    //     return $this->hasMany('App\Models\Appartenir');
+    // }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -64,4 +68,6 @@ class User extends Model
     {
         return $this->hasMany('App\Models\Commande');
     }
+
+
 }
